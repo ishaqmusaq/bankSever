@@ -1,48 +1,62 @@
-let bankDatabase=require("./database");
-//bank model
-class BanksModel {
-    constructor({ name, location, branch, phone, address, accountNumber }) {
-        this.name = name;
-        this.location = location;
-        this.branch = branch;
-        this.phone = phone;
-        this.address = address;
-        this.accountNumber = accountNumber;
-    };
-    save() {
-        bankDatabase.push(this);
-        return this;
-    }
-    static all() {
-        return bankDatabase;
-    }
+let mongoose = require('mongoose')
+const { Schema } = mongoose;
 
-    static update(updateInfo = {}) {
-        bankDatabase =  bankDatabase.map(bank => {
-            if (bank.name === updateInfo.name) {
-                return { ...bank, ...updateInfo };
-            };
-            return bank;
-        })
+const Bank = new Schema({
 
+    name: String,
+    location: String,
+    branch: String,
+    phone: Number,
+    address: String,
+    accountNumber: Number,
+});
+module.exports=Bank
 
-    }
+// let bankDatabase=require("./database");
+// //bank model
+// class BanksModel {
+//     constructor({ name, location, branch, phone, address, accountNumber }) {
+//         this.name = name;
+//         this.location = location;
+//         this.branch = branch;
+//         this.phone = phone;
+//         this.address = address;
+//         this.accountNumber = accountNumber;
+//     };
+//     save() {
+//         bankDatabase.push(this);
+//         return this;
+//     }
+//     static all() {
+//         return bankDatabase;
+//     }
 
-    static delete({ name }) {
-        let deletedBank = null;
-        bankDatabase = bankDatabase.filter(bank => {
-            console.log(bank.name === name)
-            if (bank.name !== name) {
-
-                return true;
-            };
-            deletedBank = bank;
-            return false;
-        });
-        return deletedBank;
-    };
+//     static update(updateInfo = {}) {
+//         bankDatabase =  bankDatabase.map(bank => {
+//             if (bank.name === updateInfo.name) {
+//                 return { ...bank, ...updateInfo };
+//             };
+//             return bank;
+//         })
 
 
-};
+//     }
 
-module.exports=BanksModel
+//     static delete({ name }) {
+//         let deletedBank = null;
+//         bankDatabase = bankDatabase.filter(bank => {
+//             console.log(bank.name === name)
+//             if (bank.name !== name) {
+
+//                 return true;
+//             };
+//             deletedBank = bank;
+//             return false;
+//         });
+//         return deletedBank;
+//     };
+
+
+// };
+
+// module.exports=BanksModel

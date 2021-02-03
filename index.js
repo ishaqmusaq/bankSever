@@ -5,7 +5,9 @@ const {listBankController,createBankController,updateBankController,deleteBankCo
 //create express server instant
 
 const server = express();
-
+//mongoos
+const mongoose = require('mongoose');
+mongoose.connect('mongodb+srv://ishaq:1234&ishaq@cluster0.w1b95.mongodb.net/ishaq?retryWrites=true&w=majority', {useNewUrlParser: true});
 
 //middleware Definition
 server.use(bodyParser.json())
