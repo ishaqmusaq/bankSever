@@ -1,16 +1,17 @@
 let mongoose = require('mongoose')
 const { Schema } = mongoose;
 
-const Bank = new Schema({
+const BankSchema = new Schema({
 
     name: String,
     location: String,
     branch: String,
     phone: Number,
     address: String,
-    accountNumber: Number,
+    accounts :[{ type: Schema.Types.ObjectId, ref: 'Account' }]
 });
-module.exports=Bank
+const Bank = mongoose.model("Bank", BankSchema)
+module.exports=Bank;
 
 // let bankDatabase=require("./database");
 // //bank model
