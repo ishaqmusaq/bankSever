@@ -8,7 +8,7 @@ const BankSchema = new Schema({
     branch: String,
     phone: Number,
     address: String,
-    accounts :[{ type: Schema.Types.ObjectId, ref: 'Account' }]
+    accounts :[{ type:mongoose. Schema.Types.ObjectId, ref: 'Account' }]
 });
 const Bank = mongoose.model("Bank", BankSchema)
 module.exports=Bank;

@@ -4,7 +4,7 @@ const Account = require("./AccountModel");
 //request handlers/controllers
 //list all bank
 const listBankController = async (req, res) => {
-    const banks = await Bank.find({});
+    const banks = await Bank.find() 
     if (banks) {
         return res.json({ message: "bank created successful", data: banks });
 
@@ -53,7 +53,7 @@ const deleteBankController = async (req, res) => {
 
 //list all account
 const listAccountController = async (req, res) => {
-    const accounts = await Account.find({}).populate("bank");
+    const accounts = await Account.find({})
     if (accounts) {
         return res.json({ message: "bank created successful", data: accounts });
 
