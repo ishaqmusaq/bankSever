@@ -3,6 +3,7 @@ const express = require("express");
 //const bodyParser = require("body-parser");
 const bankRoute =require("./route/bankRoute")
 const accountRoute =require("./route/accountRoute")
+const signupRoute =require('./route/userRoute')
 const server = express();
 //mongoos
 const mongoose = require('mongoose');
@@ -15,6 +16,7 @@ mongoose.connect('mongodb+srv://ishaq:1234&ishaq@cluster0.w1b95.mongodb.net/isha
 //route
 server.use( bankRoute);
 server.use( accountRoute)
+server.use(signupRoute)
 
 
 
