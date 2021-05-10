@@ -27,19 +27,18 @@ router.put('/signup', [
                     }
                 );
         }),
-    body('password').isPassportNumber().withMessage('password required').custom((value, { req }) => {
+    body('password').trim().isLength({min:5})
 
-    })
-
-],
-
-    signupController);
+],  signupController);
 
 
-    router.post('/signin',[body('email')])
+    router.post('/signin',[
+        body('email')
     .isEmail()
-    .withMessage('email is valid')
+    .withMessage('email is invalid'),
     body('passowrd').trim().isLength({min:5})
-    ,signinController
+    ],
+    signinController
+    )
 
 module.exports = router;

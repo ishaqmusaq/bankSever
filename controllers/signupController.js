@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken')
 
 
 
-const signupController = (req, res) => {
+    const signupController = (req, res) => {
 
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -27,8 +27,8 @@ const signupController = (req, res) => {
 
 
 
-const signinController =async (req, res) => {
-try {
+    const signinController =async (req, res) => {
+       try {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         
@@ -37,26 +37,29 @@ try {
     const { email, password } = req.body
 
     //find the user module
-     const user = await Usermodel.findOne({ email });
+    const user = await Usermodel.findOne({ email });
+    
      if(!user){
         return res.json({ message: 'user not found' });
      }
+
     //compare password
-   const isAuth = await  bcrypt.compare(password, user.password);
+    const isAuth = await  bcrypt.compare(password, user.password);
    if(!isAuth){
-    return res.json({ message: 'email and password conbination is correct ' });
+    return res.json({ message: 'email and password conbination is incorrect ' });
 
    }
 
-const token  = jwt.sign({name:user.name ,emil:user,email,UserId:user._id},
-    'supersecretkeythatcanotaesilynesuj',
+     const token  = jwt.sign({name:user.name ,emil:user,email,UserId:user._id},
+    'supersecretkeythatcanotbeeasilyguessed',
     {expiresIn:'1hr'}
 
 )
-   return res.json({ message: 'user signin ',token });
+     return res.json({ message: 'user signin ',token });
 
-} catch (error) {
-    res.json({ message: 'server error .plaese try again' })
+} 
+    catch (error) {
+    res.json({ message: 'server error. plaese try again' })
 }
 
    
